@@ -37,6 +37,14 @@
                         <label for="imagefile" class="form-label">Upload Image</label>
                         <input class="form-control" type="file" id="imagefile" name="imagefile">
                     </div>
+                    <div class="mb-3">
+                        <label for="model_select" class="form-label">Select Model</label>
+                        <select class="form-select" id="model_select" name="model_select">
+                            <option value="resnet">ResNet</option>
+                            <option value="densenet">DenseNet</option>
+                            <option value="vgg16">VGG16</option>
+                        </select>
+                    </div>
                     <button class="btn btn-primary mt-3" type="submit">Predict Image</button>
                 </form>
             </div>
@@ -51,11 +59,28 @@
                     <h3>Cure:</h3>
                     
                     <ul>
-                        {% for line in response.split('\n') %}
+                        {% for line in response_cure.split('\n') %}
                             <li>{{ line }}</li>
                         {% endfor %}
                     </ul>
                 </div>
+            </div>
+            <div class="response">
+                <h3>Prevention:</h3>
+                <ul>
+                    {% for line in response_prevention.split('\n') %}
+                        <li>{{ line }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            
+            <div class="response">
+                <h3>Symptoms:</h3>
+                <ul>
+                    {% for line in response_symptoms.split('\n') %}
+                        <li>{{ line }}</li>
+                    {% endfor %}
+                </ul>
             </div>
         {% endif %}
         
