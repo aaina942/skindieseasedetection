@@ -49,13 +49,18 @@
                 </div>
                 <div class="response">
                     <h3>Cure:</h3>
-                    <p>{{ response }}</p>
+                    
+                    <ul>
+                        {% for line in response.split('\n') %}
+                            <li>{{ line }}</li>
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
         {% endif %}
         
         {% if error %}
-            <div class="row justify-content-center mt-5">
+            <div class="row justify-content-center mt-5">   
                 <div class="col-md-6">
                     <p class="text-center" style="color: red">{{ error }}</p>
                 </div>
