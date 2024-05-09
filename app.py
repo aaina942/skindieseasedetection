@@ -12,7 +12,7 @@ import google.generativeai as genai
 app = Flask(__name__)   
 
 ##model = load_model('./model/resnet.h5')
-le = LabelEncoder()
+#le = LabelEncoder()
 label_names = ['Eczema', 'Warts Molluscum and other Viral Infections', 'Melanoma', 'Atopic Dermatitis', 'Basal Cell Carcinoma', 'Melanocytic Nevi', 'Benign Keratosis-like Lesions', 'Psoriasis pictures Lichen Planus ', 'Seborrheic Keratoses and other Benign Tumors ', 'Tinea Ringworm Candidiasis and other Fungal Infections']
 
 genai.configure(api_key="AIzaSyAoBtiv2bvk0Z6v0lVM-AH81Ei_9Q2PlYI")  # Replace YOUR_API_KEY with your actual API key
@@ -65,7 +65,7 @@ def predict():
             image=preprocess_resnet(np.array([image]))
         elif selected_model == 'densenet':
             model_path = './model/densenet.h5'
-            image=preprocess_densenet(np.array([image]))
+            image=preprocess_resnet(np.array([image]))
         elif selected_model == 'vgg16':
             model_path = './model/vgg16_model.h5'
             image=preprocess_vgg16(np.array([image]))
@@ -94,6 +94,8 @@ def predict():
                                response_cure=response_cure, response_prevention=response_prevention, response_symptoms=response_symptoms)
 
     return render_template('index.html')
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
